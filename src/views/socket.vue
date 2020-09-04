@@ -163,7 +163,7 @@
 		},
 		sockets:{
 			connect() {
-				console.log('链接成功');
+				console.log('连接成功');
 			},
 			disconnect() {
 				console.log('断开链接')
@@ -390,6 +390,7 @@
 		height: 40px;
 		margin-left: 12px;
 		border-radius: 3px;
+		object-fit: cover;
 	}
 
 	.m-ft {
