@@ -60,6 +60,11 @@ export default  {
 			component: ()=> import('@/views/details'),
 			props: true,
 		},
+		{
+			path:'/socket',
+			name:'socket',
+			component: ()=> import('@/views/socket'),
+		},
         {
             path:'*',
 			name:'NotFound',

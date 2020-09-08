@@ -102,7 +102,10 @@
 						return false;
 					}
 					let pages = document.getElementById('pages');
-					this.wayscroll(pages);
+					if(pages){
+						this.wayscroll(pages);
+					}
+					
 				}
 			}
 		}

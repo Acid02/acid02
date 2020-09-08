@@ -4,7 +4,7 @@
 	  		<Loading/>
 	  </Masking>
 	<template v-else>
-		<div id="soketShow" @click="show = !show" title="网页聊天室" v-if="winWidth>790"></div>
+		<!-- <div id="soketShow" @click="show = !show" title="网页聊天室" v-if="winWidth>790"></div> -->
 			  <keep-alive>
 				  <router-view v-if="show" :winWidth='winWidth'/>
 				  <socket v-else/>
@@ -19,7 +19,7 @@ const socket = ()=> import('@/views/socket.vue')
 import Masking from '@/components/Masking' //蒙层
 export default {
   name: 'App',
-  components: {Masking,socket},
+  components: {Masking},
   data(){
 	 return {
 		 show:true,

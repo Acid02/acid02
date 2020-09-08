@@ -14,8 +14,8 @@ router.beforeEach((to, from, next) => {
     document.title = to.meta.title
   }
   /* 详情页回到顶部 */
-  if(to.name =='details'){
-	  window.scrollTo({top:0,behavior:'smooth'})
+  if(to.name =='details' || to.name =='socket' ){
+	  window.scrollTo({top:0});//过度 ,behavior:'smooth'
   }
   // console.log(to)
   next()

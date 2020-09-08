@@ -4,8 +4,9 @@
 			<div class="panel">
 				<div>请输入您的qq号。</div>
 				<div><input type="text" v-model="isqq" maxlength="10"></div>
-				<div class="ok" @click="ok">
-					<span>确定</span>
+				<div class="ok">
+					<span @click="$router.back(-1)">取消</span>
+					<span @click="ok">确定</span>
 				</div>
 			</div>
 		</div>
@@ -19,8 +20,8 @@
 						</div>
 						<div class="info">
 							<div class="name">{{user.username || '匿名'}}</div>
-							<div class="menu">
-								<i class="iconfont icon-sang"></i>
+							<div class="menu" @click="$router.back(-1)">
+							     <i class="iconfont icon-sang"></i>
 							</div>
 						</div>
 					</div>
@@ -163,13 +164,13 @@
 		},
 		sockets:{
 			connect() {
-				console.log('连接成功');
+				// console.log('连接成功');
 			},
 			disconnect() {
-				console.log('断开链接')
+				// console.log('断开链接')
 			},
 			reconnect() {
-				console.log('重新链接')
+				// console.log('重新链接')
 			},
 			enter(data) {
 				let obj = {};
@@ -182,7 +183,7 @@
 				// console.log("enter：", data)
 			},
 			message(data) {
-				console.log('message：', data)
+				// console.log('message：', data)
 				data.self = data.uid == this.user.uid ? true : false;
 				this.currentChatList.push(data);
 				this.$refs.input.innerHTML = '';
@@ -219,7 +220,9 @@
 	.main-inner {
 		display: flex;
 		width: 1000px;
+		max-width: 100%;
 		height: 720px;
+		max-height: 100vh;
 		margin: 0 auto;
 
 		border-radius: 3px;
@@ -254,7 +257,7 @@
 	.qunpic{
 		display: flex;
 		justify-content: center;
-		/* align-items: center; */
+		align-items: center;
 		flex-wrap: wrap;
 	}
     .qunpic>img{
@@ -517,11 +520,54 @@
 		margin-top: 10px;
 	}
 
-	#mask .panel .ok span {
+	#mask .panel .ok span{
 		padding: 5px 20px;
 		cursor: pointer;
-		background-color: #4ab34a;
 		border-radius: 4px;
 		color: #fff;
+	}
+	#mask .panel .ok span:last-child{
+		background-color: #4AB34A;
+		border: 1px solid #4AB34A;
+	}
+	#mask .panel .ok span:first-child{
+		border: 1px solid gray;
+		color: #000000;
+		margin-right: 2%;
+	}
+	@media screen and (max-width: 768px) {
+		.main-inner{
+			flex-direction: column;
+			border-radius: 0;
+		}
+		.sd{
+			width: 100%;
+		}
+		.chat-box{
+			width: 100%;
+		}
+		.nt-item .content{
+			max-width: 100%;
+			width: 100%;
+		}
+		.chat-area,.m-ft .tool-tab{
+			display: none;
+		}
+		.m-ft .content{
+			padding: 2%;
+		}
+		.chat-bd{
+			height: 50vh;
+			padding: 2%;
+		}
+		.m-ft{
+		   height: auto;	
+		}
+		#socket{
+			padding: 0;
+		}
+		#mask .panel{
+			margin-left:19%
+		}
 	}
 </style>

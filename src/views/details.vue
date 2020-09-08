@@ -51,7 +51,7 @@
 			</section>
 		</main>
 		<Masking :show="MaskingShow" @MaskShow="MaskShow">
-			<Mobile />
+			<Mobile @MaskShow="MaskShow"/>
 		</Masking>
 		<Footer />
 		<GoUp />
