@@ -1,8 +1,10 @@
 <template>
 	<div id="body-warp">
 		<div class="body-bag">
-			<!-- <video class="body-media" ref="video" src="https://dc.xhscdn.com/9379abe0-7ad8-11e9-8794-9320f6c9d557/%E8%83%8C%E6%99%AF%E8%A7%86%E9%A2%91.mp4" muted="muted" autoplay="autoplay" loop="loop" x5-video-player-fullscreen="true" webkit-playsinline="true" x-webkit-airplay="true" playsinline="true" alt="beijing" /> -->
-		    <img class="body-media" src="../assets/images/thumb-1920-826265.png" alt="声之形">
+			<img class="body-media" :src="media.images" alt="声之形" v-if="isAndroid">
+			<video v-else class="body-media" ref="video" :src="media.video" :poster='media.videoPoster'
+			 muted="muted" autoplay="autoplay" loop="loop" x5-video-player-fullscreen="true" webkit-playsinline="true"
+			 x-webkit-airplay="true" playsinline="true" alt="beijing" />
 		</div>
 		<div class="body-header">
 			<slot name="header"></slot>
@@ -18,7 +20,8 @@
 				<a class="social-icon" href="http://wpa.qq.com/msgrd?v=3&uin=1716815045&site=qq&menu=yes" target="_blank" title="联系博主">
 					<i class="iconfont icon-iconfonticon6"></i>
 				</a>
-				<a class="social-icon" href="https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MjM5ODI0MjA1NA==&scene=110#wechat_redirect" target="_blank" title="微信">
+				<a class="social-icon" href="https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MjM5ODI0MjA1NA==&scene=110#wechat_redirect"
+				 target="_blank" title="微信">
 					<i class="iconfont icon-gongzhonghao"></i>
 				</a>
 				<a class="social-icon" href="https://github.com/acid02/" target="_blank" title="GitHub">
@@ -35,29 +38,42 @@
 		<div id="scroll_down" @click="goToTop($event)">
 			<i class="iconfont icon-35_xiangxiajiantou scroll_down-i"></i>
 		</div>
-		<!-- <remote-js :js-url="'https://res.wx.qq.com/open/js/jweixin-1.0.0.js'" :js-load-call-back="loadRongJs"></remote-js> -->
+		<remote-js :js-url="'https://res.wx.qq.com/open/js/jweixin-1.0.0.js'" :js-load-call-back="loadRongJs" v-if="isWeiXin"></remote-js>
 	</div>
 </template>
 
 <script>
-	// import RemoteJs from '@/components/RemoteJs'// 导入组件
-	import {getquotations} from '@/api/UserInfo.js' //随机语录
+	const RemoteJs =()=> import('@/components/RemoteJs');
+	// import RemoteJs from '@/components/RemoteJs'
+	import { getquotations,getThemedia } from '@/api/UserInfo.js' //随机语录//随机图片视频
 	export default {
 		name: 'BodyWrap',
-		// components: {
-		//     RemoteJs
-		// },
-		data(){
+		components: {
+			RemoteJs
+		},
+		data() {
 			return {
-				titleIndex:0,
-				title:"遥知朔漠多风雪，更待江南半月春。"
+				titleIndex: 0,
+				media:{
+					images:'http://wx3.sinaimg.cn/mw690/006ZNE4cgy1gimo8xkzs8j316t0u07uu.jpg', //require('../assets/images/thumb-1920-826265.png')
+					video:'http//f.video.weibocdn.com/0026cv2hgx07GlAPhuTJ01041200f7Ng0E010.mp4?label=mp4_1080p&template=1920x1080.25.0&trans_finger=0bde055d9aa01b9f6bc04ccac8f0b471&media_id=4547965721706523&tp=8x8A3El:YTkl0eM8&us=0&ori=1&bf=4&ot=h&ps=3lckmu&uid=6ZNE4c&ab=966-g1&Expires=1599813587&ssig=CKlshFBg24&KID=unistore,video',
+				    videoPoster:'http://wx4.sinaimg.cn/mw690/006ZNE4cgy1gimntbsp3bj30u00u0nht.jpg',
+				},
+				title: "遥知朔漠多风雪，更待江南半月春。",
+				isAndroid: this.judgeClient() == 'Android',
+				isWeiXin: this.isWeiXin(),
 			}
 		},
 		async created() {
-			window.addEventListener('scroll', this.handleScroll)
-			let {msg} = await getquotations();
+			window.addEventListener('scroll', this.handleScroll);
+			// let {data} = await getThemedia();
+			// this.media = data
+			// console.log(media)
+			let { msg } = await getquotations();
 			this.title = msg;
+	
 			this.Subtitle()
+			// console.log('测试',this.isAndroid,this.isWeiXin)
 		},
 		methods: {
 			Subtitle() {
@@ -82,20 +98,27 @@
 			},
 			//js加载完成
 			loadRongJs() {
-			     // 当使用远程js里的内容时请添加"//eslint-disable-line"防止eslint检测报错
-			     // console.log(this.$refs.video) //eslint-disable-line
-				 //微信内部浏览器自动播放
-				 document.addEventListener("WeixinJSBridgeReady",()=> {
-				 	// this.$refs.video.play();
-				 }, false);
+				// 当使用远程js里的内容时请添加"//eslint-disable-line"防止eslint检测报错
+				// console.log(this.$refs.video) //eslint-disable-line
+				// this.$refs.video.play();	
+				//微信内部浏览器自动播放
+				if (window.WeixinJSBridge) {
+					window.WeixinJSBridge.invoke('getNetworkType', {}, (res) => {
+						this.$refs.video.play();
+					})
+				}else{
+					document.addEventListener('WeixinJSBridgeReady', () => {
+						this.$refs.video.play();
+					}, false);
+				}
+
 			},
-			goToTop(event){
+			goToTop(event) {
 				// console.log(document.body.scrollIntoView())
 				this.$emit('goToTop')
 			},
 		},
 	}
-	
 </script>
 
 <style scoped>
@@ -119,6 +142,7 @@
 		object-fit: cover;
 		z-index: -1;
 	}
+
 	#site_title {
 		font-size: 40px;
 		line-height: 1.5;
@@ -138,7 +162,7 @@
 		font-size: 24px;
 		line-height: 1.5;
 	}
-    
+
 	#subtitle::after {
 		content: '|';
 	}
@@ -179,10 +203,17 @@
 		line-height: 1.5;
 
 	}
-    @keyframes headerNoOpacity{
-    	from{transform: translateY(-50px);}
-    	to{transform: translateY(0);}
-    }
+
+	@keyframes headerNoOpacity {
+		from {
+			transform: translateY(-50px);
+		}
+
+		to {
+			transform: translateY(0);
+		}
+	}
+
 	@keyframes typedjsBink {
 		0% {
 			opacity: 0;
@@ -229,6 +260,7 @@
 		}
 
 	}
+
 	@media screen and (max-width: 1200px) {
 		#site_social_icons {
 			display: block;

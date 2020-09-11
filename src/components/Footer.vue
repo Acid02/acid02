@@ -35,7 +35,7 @@
 			<div class="icp">
 				<a href="http://www.beian.miit.gov.cn/" target="_blank">
 					<img class="icp-icon loading" src="https://cdn.jsdelivr.net/gh/xingjiahui/CDN@latest/2020/06/06/0bcff08ca63f75f26d0f0db7290665fc.png">
-					<span>鲁 ICP 备 ------- 号</span>
+					<span>{{beiAn}}</span>
 				</a>
 			</div>
 		</div>
@@ -43,6 +43,7 @@
 </template>
 
 <script>
+	import {getfooter} from '@/api/UserInfo.js'
 	export default {
 		name:"Footer",
 		data(){
@@ -55,10 +56,12 @@
 					xs:0,
 					fz:0,
 					miao:0,
-				}
+				},
+				buildTime:'',//建成时间
+				beiAn:'',//备案号
 			}
 		},
-		beforeCreate() {
+		// beforeCreate() {
 			// document.onreadystatechange = ()=>{
 			// 	if (document.readyState === 'complete') {
 			// 		//页面启动耗时
@@ -68,8 +71,13 @@
 			// 		console.log('Page load time is '+ loadTime);
 			// 	}
 			// }
-		},
-		created() {
+		// },
+		async created() {
+			
+			let {data} = await getfooter();
+			this.buildTime = data.buildTime;
+			this.beiAn = data.beiAn;
+			
 			this.Firstdate()
 			setInterval(()=>{
 				this.Firstdate()
@@ -84,7 +92,7 @@
 		methods:{
             Firstdate(){
 				let date = new Date();//获取现在的时间
-				let parse = Date.parse("Aug 21, 2020");//设定网站建立的时间
+				let parse = Date.parse(this.buildTime);//设定网站建立的时间
 				let getTime = date.getTime()-parse;//计算网站已经建立了多少时间
 				
 				//计算并输出网站建立的时间

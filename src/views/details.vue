@@ -186,7 +186,7 @@
 	.post-bg {
 		height: 400px;
 		position: relative;
-		animation: slots-name .5s .3s forwards;
+		animation: slots-name .5s .1s forwards;
 		opacity: 0;
 		z-index: 2;
 	}
@@ -259,7 +259,7 @@
 		opacity: 0;
 		background: var(--light_bg_color);
 		transition: all .3s;
-		animation: slot-name .5s .3s forwards;
+		animation: slot-name .5s .1s forwards;
 	}
     @keyframes slot-name{
     	from{

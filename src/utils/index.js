@@ -15,6 +15,29 @@ const isElementNotInViewport = function(el) {
   );
 };
 
+//用于判断是不是微信浏览器
+const isWeiXin = ()=> {
+	var ua = window.navigator.userAgent.toLowerCase();
+	if (ua.match(/MicroMessenger/i) == 'micromessenger') {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+  /*判断客户端*/
+const  judgeClient = ()=>{
+    let client = '';
+    if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {  //判断iPhone|iPad|iPod|iOS
+      client = 'iOS';
+    } else if (/(Android)/i.test(navigator.userAgent)) {  //判断Android
+      client = 'Android';
+    } else {
+      client = 'PC';
+    }
+    return client;
+  }
+
 export {
-	wayscroll,isElementNotInViewport
+	wayscroll,isElementNotInViewport,isWeiXin,judgeClient
 }

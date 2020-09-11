@@ -47,10 +47,23 @@ export const Upview = async (data={})=>{
 	return reqs.data.data;
 }
 
-
 //获取随机语录
 export const getquotations = async ()=>{
 	let params = {service:'quotations'}
+	let reqs = await axios.get(`${process.env.VUE_APP_USER_API}/userInfo/`,{params})
+	return reqs.data;
+}
+
+//获取随机音频或图片
+export const getThemedia = async ()=>{
+	let params = {service:'Themedia'}
+	let reqs = await axios.get(`${process.env.VUE_APP_USER_API}/userInfo/`,{params})
+	return reqs.data;
+}
+
+//获取底部备案等信息
+export const getfooter = async ()=>{
+	let params = {service:'footer'}
 	let reqs = await axios.get(`${process.env.VUE_APP_USER_API}/userInfo/`,{params})
 	return reqs.data;
 }

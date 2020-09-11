@@ -2,7 +2,7 @@ import Vue from 'vue'
 import VueSocketIO from 'vue-socket.io';
 var wesocket = {
 	debug: process.env.NODE_ENV!='production',
-	connection: process.env.NODE_ENV=='production' ? "ws://49.234.69.185:3000" :'ws://localhost:3000'
+	connection: process.env.NODE_ENV=='production' ? "wss://www.acid02.com:3000" :'wss://localhost:3000'
 }
 
 // "ws://49.234.69.185:3000"

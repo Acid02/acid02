@@ -2,7 +2,7 @@ export default  {
     routes:[
         {
             path: '/',
-            name: 'Home',
+            // name: 'Home',
             component: ()=> import('@/views/Home'),
 			meta:{
 				title:'沙小光的成长笔记'
