@@ -56,7 +56,7 @@
 				titleIndex: 0,
 				media:{
 					images:'http://wx3.sinaimg.cn/mw690/006ZNE4cgy1gimo8xkzs8j316t0u07uu.jpg', //require('../assets/images/thumb-1920-826265.png')
-					video:'http//f.video.weibocdn.com/0026cv2hgx07GlAPhuTJ01041200f7Ng0E010.mp4?label=mp4_1080p&template=1920x1080.25.0&trans_finger=0bde055d9aa01b9f6bc04ccac8f0b471&media_id=4547965721706523&tp=8x8A3El:YTkl0eM8&us=0&ori=1&bf=4&ot=h&ps=3lckmu&uid=6ZNE4c&ab=966-g1&Expires=1599813587&ssig=CKlshFBg24&KID=unistore,video',
+					video:'http://ykugc.cp31.ott.cibntv.net/69757B609A44671D3E2745186/03000B010059C9E4BFC59700000001BCAB5D8C-D5FC-6024-4A0E-3C99D8E7D5DD.mp4?ccode=0512&duration=14&expire=18000&psid=8533991b8a710ed52959a3bc7a1c7c244597c&ups_client_netip=3daaa301&ups_ts=1599823565&ups_userid=&utid=pWAtF085yCACAd5DgDDAF6mL&vid=XMzk0ODc3ODIyMA&vkey=B797e1af9b8a0bae88f9616d9579e049f&eo=1&rid=200000008D56578F57D12C66C5C581904A4A382402000000&bc=2&dre=u21&si=42&dst=1',
 				    videoPoster:'http://wx4.sinaimg.cn/mw690/006ZNE4cgy1gimntbsp3bj30u00u0nht.jpg',
 				},
 				title: "遥知朔漠多风雪，更待江南半月春。",

@@ -7,7 +7,7 @@
 					<div class="card-image">
 						<a class="image" href="#">
 							<img class="thumbnail" width="100%" :data-src="item.headerpic" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="
-							 :alt="item.title">
+							 :alt="item.title" lazy='loading'>
 						</a>
 					</div>
 					<article class="card-content" role="article">
@@ -106,7 +106,8 @@
 					if (this.handleScroll(el) && !el.getAttribute('class').includes('carss')) {
 						el.classList.add("carss")
 						let img = el.children[0].children[0].children[0].children[0];
-						img.src = img.dataset.src
+						img.src = img.dataset.src;
+						img.setAttribute("lazy","loaded");
 					}
 				})
 			},
@@ -189,9 +190,15 @@
 		background-position: center;
 		max-height: 320px;
 		object-fit: cover;
-	    transition: all .3s;
+	    
 	}
-
+	img.thumbnail[lazy=loading] {
+	    opacity: 0;
+	}
+    img.thumbnail[lazy=loaded]{
+		opacity: 1;
+		transition: opacity .4s ease-in 0s;
+	}
 	.card:first-child {
 		margin-top: 0;
 	}
