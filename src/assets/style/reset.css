@@ -171,3 +171,14 @@ a {
 	box-shadow: var(--shadow);
 	border-radius: var(--radius);
 }
+
+  /*进度条*/
+/*  #nprogress .bar {
+    height: 3px;
+    background: #fe9600;
+    z-index: 1000;
+  }
+
+  #nprogress .peg {
+    box-shadow: 0 0 10px #fe9600, 0 0 5px #fe9600;
+  } */

@@ -28,6 +28,7 @@ Vue.component('Loading',Loading)
 Vue.config.productionTip = false
 // import VConsole from 'vconsole'
 // const vConsole = new VConsole()
+
 store.dispatch('UserInfo/fetchDatas')
 
 new Vue({
