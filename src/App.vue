@@ -5,10 +5,10 @@
 	  </Masking>
 	<template v-else>
 		<!-- <div id="soketShow" @click="show = !show" title="网页聊天室" v-if="winWidth>790"></div> -->
-			  <keep-alive>
-				  <router-view v-if="show" :winWidth='winWidth'/>
-				  <socket v-else/>
-		</keep-alive>
+			<keep-alive>
+			    <router-view v-if="show" :winWidth='winWidth'/>
+				<socket v-else/>
+			</keep-alive>
 	</template>
 	  
   </div>
@@ -42,7 +42,7 @@ export default {
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
 }
-#soketShow{
+/* #soketShow{
 	position: fixed;
 	width: 80px;
 	height: 80px;
@@ -51,5 +51,5 @@ export default {
 	background: #6c5ce7 url(./assets/images/default_hd.jpg) no-repeat center/cover;
 	border-radius: 50%;
 	z-index: 9;
-}
+} */
 </style>

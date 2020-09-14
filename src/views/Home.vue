@@ -1,8 +1,10 @@
 <template>
 	<div id="Home">
+		<transition name="fade">
 			<BodyWrap @goToTop="backTop">
 				<Header slot='header' @MaskShow="MaskShow" />
 			</BodyWrap>
+		</transition>
 			<main class="layout_page" id='pages' ref='page'>
 				<section class="bgcolor">
 					<div class="aside aside_left">
@@ -134,7 +136,6 @@
 		flex: none;
 		margin-bottom: 10px;
 	}
-
 	.aside_left,
 	.aside_right {
 		width: 25%;

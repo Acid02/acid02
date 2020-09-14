@@ -153,7 +153,7 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		line-height: 1.5;
+		line-height: inherit;
 	}
 	.footer_custom_text>*{
 		display: block;
@@ -168,6 +168,7 @@
 	}
 	#footer-wrap .icp-icon {
 	    padding: 0 4px;
+		padding-left: 0;
 	    vertical-align: text-bottom;
 	}
 	.icp:hover{

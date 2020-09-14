@@ -14,11 +14,16 @@ export const getUser = async ()=>{
 	let reqs = await axios.get(`${process.env.VUE_APP_USER_API}/userInfo/`,{params})
 	
 	if(!reqs.data.data.nickname || !reqs.data.data.useravatar){
-		let resq = await MyiqInfo();
-		if(resq.code == 1){
-			reqs.data.data.useravatar = resq.imgurl;
-			reqs.data.data.nickname = resq.name;
+		try{
+			let resq = await MyiqInfo();
+			if(resq.code == 1){
+				reqs.data.data.useravatar = resq.imgurl;
+				reqs.data.data.nickname = resq.name;
+			}
+		}catch(e){
+			console.err(e)
 		}
+		
 		return reqs.data.data;
 	}else{
 		return reqs.data.data;

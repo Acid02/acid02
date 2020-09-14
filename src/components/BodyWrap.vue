@@ -2,7 +2,7 @@
 	<div id="body-warp">
 		<div class="body-bag">
 			<img class="body-media" :src="media.images" alt="声之形" v-if="isAndroid">
-			<video v-else class="body-media" ref="video" :src="media.video" :poster='media.videoPoster'
+			<video v-else class="body-media" ref="video" :src="media.video.src" :poster='media.video.poster'
 			 muted="muted" autoplay="autoplay" loop="loop" x5-video-player-fullscreen="true" webkit-playsinline="true"
 			 x-webkit-airplay="true" playsinline="true" alt="beijing" />
 		</div>
@@ -44,8 +44,8 @@
 
 <script>
 	const RemoteJs =()=> import('@/components/RemoteJs');
-	// import RemoteJs from '@/components/RemoteJs'
-	import { getquotations,getThemedia } from '@/api/UserInfo.js' //随机语录//随机图片视频
+	import { mapState } from 'vuex';
+	import { getquotations } from '@/api/UserInfo.js' //随机语录
 	export default {
 		name: 'BodyWrap',
 		components: {
@@ -54,26 +54,17 @@
 		data() {
 			return {
 				titleIndex: 0,
-				media:{
-					images:'http://wx3.sinaimg.cn/mw690/006ZNE4cgy1gimo8xkzs8j316t0u07uu.jpg', //require('../assets/images/thumb-1920-826265.png')
-					video:'http://ykugc.cp31.ott.cibntv.net/69757B609A44671D3E2745186/03000B010059C9E4BFC59700000001BCAB5D8C-D5FC-6024-4A0E-3C99D8E7D5DD.mp4?ccode=0512&duration=14&expire=18000&psid=8533991b8a710ed52959a3bc7a1c7c244597c&ups_client_netip=3daaa301&ups_ts=1599823565&ups_userid=&utid=pWAtF085yCACAd5DgDDAF6mL&vid=XMzk0ODc3ODIyMA&vkey=B797e1af9b8a0bae88f9616d9579e049f&eo=1&rid=200000008D56578F57D12C66C5C581904A4A382402000000&bc=2&dre=u21&si=42&dst=1',
-				    videoPoster:'http://wx4.sinaimg.cn/mw690/006ZNE4cgy1gimntbsp3bj30u00u0nht.jpg',
-				},
 				title: "遥知朔漠多风雪，更待江南半月春。",
 				isAndroid: this.judgeClient() == 'Android',
 				isWeiXin: this.isWeiXin(),
 			}
 		},
+		computed: mapState('UserInfo', ['media']),
 		async created() {
 			window.addEventListener('scroll', this.handleScroll);
-			// let {data} = await getThemedia();
-			// this.media = data
-			// console.log(media)
 			let { msg } = await getquotations();
 			this.title = msg;
-	
 			this.Subtitle()
-			// console.log('测试',this.isAndroid,this.isWeiXin)
 		},
 		methods: {
 			Subtitle() {
@@ -126,16 +117,21 @@
 		position: relative;
 		width: 100%;
 		min-height: 100vh;
+		
 	}
-
 	.body-bag {
 		position: fixed;
 		width: 100%;
 		height: 100%;
 		z-index: -1;
 		background-color: azure;
+		opacity: 0;
+		animation: fade .5s ease-in forwards;
 	}
-
+ @keyframes fade{
+    	from{opacity: 0;}
+    	to{opacity: 1;}
+    }
 	.body-media {
 		width: 100%;
 		min-height: 100vh;

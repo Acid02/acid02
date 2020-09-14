@@ -1,4 +1,4 @@
-import { getUser,getArticle,getLabel } from '@/api/UserInfo'
+import { getUser,getArticle,getLabel,getThemedia } from '@/api/UserInfo'
 export default {
 	namespaced:true,//开启命名空间
 	state:{
@@ -9,6 +9,7 @@ export default {
 			label:[],
 			Allarticles:[],
 		},
+		media:{},
 		isLoading:true,
 	},
 	mutations:{
@@ -48,6 +49,10 @@ export default {
 				return 200;
 			}
 			// state.isLoading = payLoad
+		},
+		//更新背景图片或视频
+		setMedia(state,payLoad){
+			state.media = payLoad
 		}
 	},
 	actions:{
@@ -69,9 +74,11 @@ export default {
 					item.count = count++
 			    }
 			})
-			return item
+			return item;
 		})
 		context.commit('setArticle',classify)
+		
+		
 		let obj1 = {};
 		let Label = myLabel.reduce((cur,next)=>{
 			obj1[next.parent] ? "" : obj1[next.parent] = true && cur.push(next);   
@@ -83,9 +90,13 @@ export default {
 					item.count = count++
 			    }
 			})
-			return item
+			return item;
 		})
 		context.commit('setLabel',Label);
+		
+		//获取图片或视频背景
+		let {data:media} = await getThemedia();
+		context.commit('setMedia',media)
 		
 		setTimeout(()=>{
 			context.commit('setLoading',false);
