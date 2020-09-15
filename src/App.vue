@@ -10,13 +10,13 @@
 				<socket v-else/>
 			</keep-alive>
 	</template>
-	  
   </div>
 </template>
 
 <script>
 const socket = ()=> import('@/views/socket.vue')
 import Masking from '@/components/Masking' //蒙层
+
 export default {
   name: 'App',
   components: {Masking},
@@ -31,10 +31,6 @@ export default {
 		 this.winWidth = document.body.offsetWidth ||document.documentElement.offsetWidth;
 	 }
   },
-  computed:{
-  },
-  watch:{
-  }
 }
 </script>
 

@@ -86,8 +86,7 @@
 			this.$nextTick(()=>{
 				let loadTime = window.performance.timing.domContentLoadedEventEnd-window.performance.timing.navigationStart; 
 				this.loadTime = loadTime
-			})
-			
+			});
 		},
 		methods:{
             Firstdate(){

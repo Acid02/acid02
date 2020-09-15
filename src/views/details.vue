@@ -1,6 +1,7 @@
 <template>
 	<div id="details" v-if="Allarticles">
 		<Header @MaskShow="MaskShow" />
+		<div id="web_bg" data-type="color">1</div>
 		<div class="post-bg">
 			<img :src="Allarticles.headerpic" width="100%" class="post-img">
 			<div id="post-info">
@@ -169,29 +170,46 @@
 		height: 100vh;
 		/* background-color: #000000; */
 		color: #FFFFFF;
-		animation: slideMove .3s cubic-bezier(.62, 0.91, .45, 1.27);
+		/* animation: slideMove .3s cubic-bezier(.62, 0.91, .45, 1.27); */
 		    
 	}
-
 	@keyframes slideMove {
 		from {
 			transform: translate3d(100%, 0, 0);
 		}
-
+	
 		to {
 			transform: translate3d(0, 0, 0)
 		}
 	}
+#web_bg{
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	z-index: -999;
+	 background: var(--light_bg_color);
+	animation: to_show 4s;
+}
+@keyframes to_show {
+		from {
+			opacity: 0;filter: alpha(opacity=0);
+		}
+
+		to {
+			opacity: 1;filter: none;
+		}
+	}
+	
 
 	.post-bg {
 		height: 400px;
 		position: relative;
-		animation: slots-name .5s .1s forwards;
-		opacity: 0;
+		animation: slots-name 1s;
+		/* opacity: 0; */
 		z-index: 2;
 	}
     @keyframes slots-name{
-    	from{transform: translateX(-20px);}
+    	from{opacity: 0;transform: translateY(-50px);}
     	to{opacity: 1;}
     }
 	.post-img {
@@ -256,14 +274,12 @@
 		box-sizing: border-box;
 		color: #4C4948;
 		width: 100%;
-		opacity: 0;
-		background: var(--light_bg_color);
-		transition: all .3s;
-		animation: slot-name .5s .1s forwards;
+		transition: all .5s;
+		animation: slot-name 1s;
 	}
     @keyframes slot-name{
     	from{
-			transform: translateY(30px);
+			opacity: 0;transform: translateY(50px);
 		}
     	to{transform: translateY(0px);opacity: 1;}
     }
@@ -301,7 +317,7 @@
 		word-break: break-all;
 		/* word-break: break-all; */
 		box-shadow: 0 4px 8px 6px rgba(7, 17, 27, .06);
-		transition: all .3s;
+		transition: all .5s;
 	}
 
 	.post-content:hover {

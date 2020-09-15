@@ -134,7 +134,8 @@
 				}
 				this.user.text = content;
 				this.$socket.emit("message", this.user);
-				
+				this.$refs.input.innerHTML = '';
+				this.$refs.input.focus()
 			},
 			async ok() {
 				let qq = this.isqq.trim()
@@ -186,7 +187,6 @@
 				// console.log('message：', data)
 				data.self = data.uid == this.user.uid ? true : false;
 				this.currentChatList.push(data);
-				this.$refs.input.innerHTML = '';
 				setTimeout(()=>{
 					this.ScroolEnd()
 				},100)
@@ -429,6 +429,7 @@
 		outline: none;
 		overflow-y: auto;
 		overflow-x: hidden;
+		word-break: break-all;
 	}
 
 	.m-ft .tool-tab {
@@ -539,6 +540,7 @@
 		.main-inner{
 			flex-direction: column;
 			border-radius: 0;
+			height: 100vh;
 		}
 		.sd{
 			width: 100%;
@@ -547,27 +549,85 @@
 			width: 100%;
 		}
 		.nt-item .content{
-			max-width: 100%;
-			width: 100%;
+			max-width: 40vh;
+			float: right;
+		}
+		.clearfixleft .nt-item .content{
+			float: left;
 		}
 		.chat-area,.m-ft .tool-tab{
+			display: none;
+		}
+		.m-ft{
+	       position: fixed;
+	       width: 100%;
+	       bottom: 0;
+	       border-top: 2px solid rgb(228, 228, 228);
+		   height: auto;
+		   flex-direction:row;
+		   flex-wrap: wrap;
+		   padding: .2rem;
+		   box-sizing: border-box;
+		   background-color: #f7f7f7;
+		}
+		.notice{
 			display: none;
 		}
 		.m-ft .content{
 			padding: 2%;
 		}
-		.chat-bd{
-			height: 50vh;
-			padding: 2%;
+		.m-ft .content{
+			padding-right: 2%;
+			display: flex;
+			align-items: center;
+		    width: 80%;
+			height: auto;
+			max-height: 87px;
+			min-height: 47px;
 		}
-		.m-ft{
-		   height: auto;	
+		.m-ft .action{
+			padding: 2% 0;
+			width: 20%;
+		}
+		.topnav_box{
+			height: 55px;
+			display: flex;
+			align-items: center;
+			background-color: #3a3f45;
+		}
+		.chat-item{
+			padding-top: 0;
+			padding-bottom: 0;
+		}
+		.m-ft .content .input{
+			background-color: #FFFFFF;
+			line-height: initial;
+			padding: 2%;
+			box-sizing: border-box;
+		}
+		.chat-bd{
+			height: calc(100vh - 187px);
+			padding: 2%;
 		}
 		#socket{
 			padding: 0;
 		}
 		#mask .panel{
 			margin-left:19%
+		}
+		.m-ft .action .u-send{
+			background-color: #1AA034;
+			color: #FFFFFF;
+			padding: 8px 14px;
+			border: 0;
+			box-sizing: border-box;
+			height: 100%;
+			width: 100%;
+			line-height: 100%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			transition: all .3s;
 		}
 	}
 </style>
