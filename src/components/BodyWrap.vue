@@ -38,7 +38,7 @@
 		<div id="scroll_down" @click="goToTop($event)">
 			<i class="iconfont icon-35_xiangxiajiantou scroll_down-i"></i>
 		</div>
-		<remote-js :js-url="'https://res.wx.qq.com/open/js/jweixin-1.0.0.js'" :js-load-call-back="loadRongJs" v-if="isWeiXin"></remote-js>
+		<!-- <remote-js :js-url="'https://res.wx.qq.com/open/js/jweixin-1.0.0.js'" :js-load-call-back="loadRongJs" v-if="isWeiXin"></remote-js> -->
 	</div>
 </template>
 
@@ -61,9 +61,23 @@
 		},
 		computed: mapState('UserInfo', ['media']),
 		async created() {
+			
+			//微信视频播放
+			try{
+				window.WeixinJSBridge.invoke('getNetworkType', {}, (res) => {
+					
+					let elevideo = this.$refs.video;
+					
+					elevideo.play()
+					
+				})
+			}catch(e){}
+			
 			window.addEventListener('scroll', this.handleScroll);
+			
 			let { msg } = await getquotations();
 			this.title = msg;
+			
 			this.Subtitle()
 		},
 		methods: {

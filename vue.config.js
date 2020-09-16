@@ -70,7 +70,15 @@ module.exports = {
 	        pathRewrite: {
 	          ['^' + process.env.VUE_APP_BASE_API]: ''
 	        }
+	     },
+	     '/wxapi': {
+	        target: 'https://wxapi.sh-datastone.com',
+	        changeOrigin: true,
+	        pathRewrite: {
+	          '^/wxapi': ''
+	        }
 	     }
+	
       } // string | Object
       // before: app => {}
     }, // 第三方插件配置
