@@ -29,8 +29,8 @@ Vue.component('Loading',Loading)
 Vue.config.productionTip = false
 
 //控制台
-import VConsole from 'vconsole'
-const vConsole = new VConsole()
+// import VConsole from 'vconsole'
+// const vConsole = new VConsole()
 
 store.dispatch('UserInfo/fetchDatas')
 

@@ -128,14 +128,14 @@
 		methods: {
 			send() {
 				let content = this.$refs.input.innerHTML;
-				content = content.replace(/^\s*/g, '').replace(/\s*$/g, '').substr(0, 200); // max 最大发送200
+				// content = content.replace(/^\s*/g, '').replace(/\s*$/g, '').substr(0, 200); // max 最大发送200
 				if (!content) {
 					return;
 				}
 				this.user.text = content;
 				this.$socket.emit("message", this.user);
 				this.$refs.input.innerHTML = '';
-				this.$refs.input.focus()
+				
 			},
 			async ok() {
 				let qq = this.isqq.trim()

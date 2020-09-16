@@ -73,6 +73,8 @@
 				})
 			}catch(e){}
 			
+			
+			
 			window.addEventListener('scroll', this.handleScroll);
 			
 			let { msg } = await getquotations();
@@ -123,6 +125,23 @@
 				this.$emit('goToTop')
 			},
 		},
+		watch:{
+			$route: {
+			    handler: function(val, oldVal){
+			     //切换路由防止视频暂停
+					let elevideo = this.$refs.video;
+					
+					if (elevideo.paused) {
+						// 暂停中
+						elevideo.play();
+					}
+					
+			    },
+			    // 深度观察监听
+			    // deep: true
+				// immediate:true
+			  }
+		}
 	}
 </script>
 
