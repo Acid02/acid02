@@ -27,18 +27,23 @@ router.beforeEach((to, from, next) => {
   if (to.meta.title) {
     document.title = to.meta.title
   }
-  /* 详情页回到顶部 */
-  if(to.name =='details' || to.name =='socket' ){
-	  window.scrollTo({top:0});//过度 ,behavior:'smooth'
-  }
    // 每次切换页面时，调用进度条
     NProgress.start();
   next()
 })
 
-router.afterEach(() => {
+router.afterEach((to, from,next) => {
+
+  let toud = ['details','socket','friend']
+  /* 详情页回到顶部 */
+  if(toud.includes(to.name)){
+  	  // window.scrollTo({top:0});//过度 ,behavior:'smooth'
+	  window.scrollTo(0, 0)
+  }
+  
   // 在即将进入新的页面组件前，关闭掉进度条
   NProgress.done()
 })
+
 
 export default router

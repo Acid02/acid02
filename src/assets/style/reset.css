@@ -171,7 +171,9 @@ a {
 	box-shadow: var(--shadow);
 	border-radius: var(--radius);
 }
-
+.aside-margin {
+		margin: var(--margin) 0;
+	}
   /*进度条*/
 /*  #nprogress .bar {
     height: 3px;

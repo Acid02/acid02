@@ -98,9 +98,9 @@ export default {
 		let {data:media} = await getThemedia();
 		context.commit('setMedia',media)
 		
-		setTimeout(()=>{
+		// setTimeout(()=>{
 			context.commit('setLoading',false);
-		},500)
+		// },500)
 		
 	  }
 	}

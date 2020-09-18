@@ -1,3 +1,4 @@
+import friend from '@/views/friend'
 export default  {
     routes:[
         {
@@ -5,15 +6,17 @@ export default  {
             // name: 'Home',
             component: ()=> import('@/views/Home'),
 			meta:{
-				title:'沙小光的成长笔记'
+				title:'沙小光的成长笔记',
+				keepAlive: true 
 			},
 			children:[
 				{
-					path:'',
+					path:'/',
 					name:'Tags',
 					component: ()=> import('@/components/Tags'),
 					meta:{
-						title:'沙小光的成长笔记'
+						title:'沙小光的成长笔记',
+						keepAlive: true 
 					},
 				},
 				{
@@ -21,7 +24,8 @@ export default  {
 					name:'Classify',
 					component: ()=> import('@/components/Classify'),
 					meta:{
-						title:'分类'
+						title:'分类',
+						keepAlive: true 
 					},
 				},
 				{
@@ -31,7 +35,8 @@ export default  {
 					props: true,
 		        	meta:{
 		        		BreadName:'分类',
-		        		BreadUrl:'Classify'
+		        		BreadUrl:'Classify',
+						keepAlive: true 
 		        	}
 		        },
 				{
@@ -39,7 +44,8 @@ export default  {
 					name:'Label',
 					component: ()=> import('@/components/Label'),
 					meta:{
-						title:'标签'
+						title:'标签',
+						keepAlive: true 
 					},
 				},
 				{
@@ -49,7 +55,8 @@ export default  {
 					props: true,
 					meta:{
 						BreadName:'标签',
-						BreadUrl:'Label'
+						BreadUrl:'Label',
+						keepAlive: true 
 					}
 				}
 			],
@@ -59,19 +66,36 @@ export default  {
 			name:'details',
 			component: ()=> import('@/views/details'),
 			props: true,
+			meta:{
+				keepAlive: false 
+			}
 		},
 		{
 			path:'/socket',
 			name:'socket',
 			component: ()=> import('@/views/socket'),
+			meta:{
+				keepAlive: true 
+			}
+		},
+		{
+			path:'/friend',
+			name:'friend',
+			component: friend,
+			meta:{
+				keepAlive: false 
+			}
 		},
         {
             path:'*',
 			name:'NotFound',
-            component: ()=> import('@/components/NotFound')
+            component: ()=> import('@/components/NotFound'),
+			meta:{
+				keepAlive: true 
+			}
         }
     ],
-    mode:"history",
+    mode:"history", //在此处加入以下内容
 	// scrollBehavior (to, from, savedPosition) {
 	// 	console.log(to,from,savedPosition)
 	// 	//详情页回到顶部

@@ -92,7 +92,7 @@
 	    height: 160px;
 	}
 	.photo-background .media{
-		background: url('http://wx3.sinaimg.cn/mw690/006ZNE4cgy1gimo8xkzs8j316t0u07uu.jpg') top/cover no-repeat;
+		background: url('../assets/images/banner1.jpg') top/cover no-repeat;
 	}
 	.photo-wrapper{
 	    width: 100%;

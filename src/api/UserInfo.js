@@ -59,6 +59,20 @@ export const getquotations = async ()=>{
 	return reqs.data;
 }
 
+//获取友链
+export const getfriend = async ()=>{
+	let params = {service:'friendlist'}
+	let reqs = await axios.get(`${process.env.VUE_APP_USER_API}/userInfo/`,{params})
+	return reqs.data;
+}
+
+//提交友链
+export const intfriend = async (data={})=>{
+	let params = {service:'insfriendlist',...data}
+	let reqs = await axios.get(`${process.env.VUE_APP_USER_API}/userInfo/`,{params})
+	return reqs.data;
+}
+
 //获取随机音频或图片
 export const getThemedia = async ()=>{
 	let params = {service:'Themedia'}

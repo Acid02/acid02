@@ -6,6 +6,9 @@
 					<slot></slot>
 				</div>
 			</transition>
+			<div class="center">
+				<slot name="center"></slot>
+			</div>
 		</div>
 	</transition>
 </template>
@@ -50,4 +53,5 @@
 	.transform-enter, .transform-leave-to{
 	   transform: translateX(100%);
 	}
+	.center{position: absolute;left: 50%;top: 50%;transform: translate3d(-50%,-50%,0);width: 100%;max-width: 500px;padding: 0 20px;box-sizing: border-box;}
 </style>

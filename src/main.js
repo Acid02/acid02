@@ -38,8 +38,7 @@ store.dispatch('UserInfo/fetchDatas')
 //微信分享
 // import { commonShare } from '@/api/Share'
 // commonShare(this,"沙小光的成长笔记",window.location.href,"http://wx3.sinaimg.cn/mw690/006ZNE4cgy1gimo8xkzs8j316t0u07uu.jpg","记录成长路上的点点滴滴");
-
-new Vue({
+let vm = new Vue({
   render: h => h(App),
   router,
   store,

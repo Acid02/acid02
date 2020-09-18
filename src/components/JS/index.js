@@ -30,17 +30,28 @@ export const messageBox = (function(ss){
 			methods:{
 				handleCancel(){
 					defaultes.handleCancel && defaultes.handleCancel.call(this);
-					document.body.removeChild( vm.$el )
+					vm.$el.style.opacity = 0;
+					setTimeout(()=>{
+						document.body.removeChild( vm.$el )
+					},300)
 				},
 				handleOK(){
 					defaultes.handleOK && defaultes.handleOK.call(this);
-					document.body.removeChild( vm.$el )
+					vm.$el.style.opacity = 0;
+					setTimeout(()=>{
+						document.body.removeChild( vm.$el )
+					},300)
 				}
 				
 			}
 		});
 		
-		document.body.appendChild( vm.$el )
+		//不允许重复提交
+		let clas = document.querySelector('.messageBox');
+		if(!clas){
+			document.body.appendChild( vm.$el )
+		}
+		
 		
 	};
 	

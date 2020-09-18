@@ -91,9 +91,7 @@
 			},
 			//返回底部
 			backTop() {
-				// setTimeout(()=>{
-					this.wayscroll(this.$refs.page);
-				// },100)
+				this.wayscroll(this.$refs.page);
 			},
 		},
 		watch:{
@@ -118,7 +116,7 @@
 
 <style scoped>
 	.layout_page {
-		width: 100%;
+		width: 100%;min-height: calc(100vh - 100px);
 		background: #fff linear-gradient(90deg, rgba(247, 149, 51, .1) 0, rgba(243, 112, 85, .1) 15%, rgba(239, 78, 123, .1) 30%, rgba(161, 102, 171, .1) 44%, rgba(80, 115, 184, .1) 58%, rgba(16, 152, 173, .1) 72%, rgba(7, 179, 155, .1) 86%, rgba(109, 186, 130, .1) 100%);
 	}
 

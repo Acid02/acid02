@@ -100,9 +100,13 @@
 				// ** this value needs to load before component mounted() runs **
 				Allarticles: function(state) {
 					let { Allarticles } = state.UserInfo.data;
-					
 					let result = [...Allarticles].filter(el => el.parent == this.parent && el.id == this.id);
-					return result[0]
+					if(result[0]){
+						return result[0]
+					}else{
+						this.$router.push({name: 'NotFound'})
+					}
+					
 				}
 			})
 		},
@@ -112,42 +116,43 @@
 				this.MaskingShow = !this.MaskingShow
 			},
 		},
-		watch: {
-			Allarticles: {
-				handler: function(val, oldVal) {
-					if (!val) {
-						this.$router.push({
-							name: 'NotFound'
-						})
-					}
-				},
-				// 深度观察监听
-				// deep: true,
-				immediate:true
-			},
-			$route: {
-				handler: function(val, oldVal) {
-					if (val.name == 'details') {
-						try{
-							let params = {
-								id: this.Allarticles.id,
-								type: this.Allarticles.type,
-							}
-							Upview(params).then(res => {
-								this.$store.commit('UserInfo/setReading', params)
-								// console.log(params)
-							})	
-						}catch(e){
-							//TODO handle the exception
-						}
+		// watch: {
+			// Allarticles: {
+			// 	handler: function(val, oldVal) {
+			// 		if (!val) {
+			// 			this.$router.push({
+			// 				name: 'NotFound'
+			// 			})
+			// 		}
+			// 	},
+			// 	// 深度观察监听
+			// 	// deep: true,
+			// 	immediate:true
+			// },
+			//页面不加缓存
+			// $route: {
+			// 	handler: function(val, oldVal) {
+			// 		if (val.name == 'details') {
+			// 			try{
+			// 				let params = {
+			// 					id: this.Allarticles.id,
+			// 					type: this.Allarticles.type,
+			// 				}
+			// 				Upview(params).then(res => {
+			// 					this.$store.commit('UserInfo/setReading', params)
+			// 					// console.log(params)
+			// 				})	
+			// 			}catch(e){
+			// 				//TODO handle the exception
+			// 			}
 						
-					}
-				},
-				// 深度观察监听
-				// deep: true,
-				immediate: true
-			},
-		}
+			// 		}
+			// 	},
+			// 	// 深度观察监听
+			// 	// deep: true,
+			// 	immediate: true
+			// },
+		// }
 	}
 </script>
 <style>
@@ -326,7 +331,7 @@
 
 	@media screen and (max-width: 768px) {
 		.post-bg {
-			height: 360px;
+			height: 280px;
 		}
 
 		.post-content {
