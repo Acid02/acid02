@@ -4,8 +4,8 @@ import axios from 'axios'
 //获取qq头像和用户名
 export const MyiqInfo = async (qq=1716815045)=>{
 	 // process.env.NODE_ENV ==''
-	let reqs = await axios.get(`${process.env.VUE_APP_BASE_API}/qqxt/api.php?qq=${qq}`)
-	return reqs.data
+	let reqs = await axios.get(`${process.env.VUE_APP_BASE_API}/api/qq?qq=${qq}`)
+	return reqs.data;
 }
 
 //获取用户信息
@@ -16,14 +16,22 @@ export const getUser = async ()=>{
 	if(!reqs.data.data.nickname || !reqs.data.data.useravatar){
 		try{
 			let resq = await MyiqInfo();
-			if(resq.code == 1){
+			if(resq.success){
 				reqs.data.data.useravatar = resq.imgurl;
 				reqs.data.data.nickname = resq.name;
 			}
 		}catch(e){
-			console.err(e)
+			console.log(e);
 		}
 		
+		// console.log(reqs.data.data)
+		//删除无效值
+		for(let x in reqs.data.data){
+			if(!reqs.data.data[x]){
+				delete reqs.data.data[x] 
+			}
+		}
+		// console.log(reqs.data.data)
 		return reqs.data.data;
 	}else{
 		return reqs.data.data;

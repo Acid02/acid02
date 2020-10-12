@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import MessageBox from './MessageBox/index.vue'
 
-export const messageBox = (function(ss){
+export const messageBox = (function(){
 	let defaultes = { //默认值
 		title:'Tips',
 		content:'Xinxin is the most beautiful！💗',

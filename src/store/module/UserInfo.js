@@ -60,9 +60,15 @@ export default {
 		 let myiqInfo = await getUser();//获取用户基本信息
 		 let myArticle = await getArticle();//获取分类信息
 		 let myLabel = await getLabel();//获取标签列表
-		 context.commit('setData',myiqInfo)
-		 context.commit('setAllarticles',myArticle.concat(myLabel))
 		 
+		 //个人信息
+		 context.commit('setData',myiqInfo)
+		 
+		 //全部文章
+		 context.commit('setAllarticles',myArticle.concat(myLabel))
+		
+		
+		//去除重复标签
 		let obj = {};
 		let classify = myArticle.reduce((cur,next)=>{
 			obj[next.parent] ? "" : obj[next.parent] = true && cur.push(next);
@@ -94,13 +100,15 @@ export default {
 		})
 		context.commit('setLabel',Label);
 		
+		
 		//获取图片或视频背景
 		let {data:media} = await getThemedia();
 		context.commit('setMedia',media)
 		
+		
 		// setTimeout(()=>{
 			context.commit('setLoading',false);
-		// },500)
+		// },500) //模拟网络请求
 		
 	  }
 	}
