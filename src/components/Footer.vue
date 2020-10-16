@@ -33,7 +33,7 @@
 				key=='miao'?'秒':''}}</span>
 			</div>
 			<div class="icp">
-				<a href="http://www.beian.miit.gov.cn/" target="_blank">
+				<a href="https://beian.miit.gov.cn/#/Integrated/index" target="_blank">
 					<img class="icp-icon loading" src="https://cdn.jsdelivr.net/gh/xingjiahui/CDN@latest/2020/06/06/0bcff08ca63f75f26d0f0db7290665fc.png">
 					<span>{{beiAn}}</span>
 				</a>
@@ -164,6 +164,7 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
+		-webkit-user-select: text;
 	}
 	#footer-wrap .icp-icon {
 	    padding: 0 4px;

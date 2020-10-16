@@ -1,186 +1,95 @@
-/* http://meyerweb.com/eric/tools/css/reset/ */
-/* v1.0 | 20080212 */
-
-html,
-body,
-div,
-span,
-applet,
-object,
-iframe,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-blockquote,
-pre,
-a,
-abbr,
-acronym,
-address,
-big,
-cite,
-code,
-del,
-dfn,
-em,
-font,
-img,
-ins,
-kbd,
-q,
-s,
-samp,
-small,
-strike,
-strong,
-sub,
-sup,
-tt,
-var,
-b,
-u,
-i,
-center,
-dl,
-dt,
-dd,
-ol,
-ul,
-li,
-fieldset,
-form,
-label,
-legend,
-table,
-caption,
-tbody,
-tfoot,
-thead,
-tr,
-th,
-td {
+a,abbr,acronym,address,applet,b,big,blockquote,body,caption,center,cite,code,dd,del,dfn,div,dl,dt,em,fieldset,font,form,h1,h2,h3,h4,h5,h6,html,i,iframe,img,ins,kbd,label,legend,li,object,ol,p,pre,q,s,samp,small,span,strike,strong,sub,sup,table,tbody,td,tfoot,th,thead,tr,tt,u,ul,var {
 	margin: 0;
 	padding: 0;
-	border: 0;
 	outline: 0;
-	font-size: 100%;
+	border: 0;
+	background: 0 0;
 	vertical-align: baseline;
-	background: transparent;
+	font-size: 100%
 }
 
 body {
 	line-height: 1;
-	-webkit-overflow-scrolling: touch;
-}
-ol,
-ul {
-	list-style: none;
+	-webkit-overflow-scrolling: touch
 }
 
-blockquote,
-q {
-	quotes: none;
+ol,ul {
+	list-style: none
 }
 
-blockquote:before,
-blockquote:after,
-q:before,
-q:after {
-	content: '';
-	content: none;
+blockquote,q {
+	quotes: none
 }
 
-/* remember to define focus styles! */
+blockquote:after,blockquote:before,q:after,q:before {
+	content: "";
+	content: none
+}
+
 :focus {
-	outline: 0;
+	outline: 0
 }
 
-/* remember to highlight inserts somehow! */
 ins {
-	text-decoration: none;
+	text-decoration: none
 }
 
 del {
-	text-decoration: line-through;
+	text-decoration: line-through
 }
 
-/* tables still need 'cellspacing="0"' in the markup */
 table {
 	border-collapse: collapse;
-	border-spacing: 0;
+	border-spacing: 0
 }
 
 a {
-	-webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+	color: unset;
+	text-decoration: none;
+	-webkit-tap-highlight-color: rgba(255,255,255,0);
 	-webkit-user-select: none;
 	-moz-user-focus: none;
-	-moz-user-select: none;
-	text-decoration: none;
-	color: unset;
+	-moz-user-select: none
 }
 
-/* 暗黑模式 */
-/* @media (prefers-color-scheme: dark) {} */
-/* 选中 */
-*::selection {
+::selection {
 	background: #6c5ce7;
-	color: #f7f7f7;
+	color: #f7f7f7
 }
 
-@media screen and (min-width: 768px) {
-	/* //滚动条 */
+@media screen and (min-width:768px) {
 	::-webkit-scrollbar {
-	  /*滚动条整体样式*/
-	  width : 8px;  /*高宽分别对应横竖滚动条的尺寸*/
-	  height: 8px;
+		width: 8px;
+		height: 8px
 	}
-	::-webkit-scrollbar-corner{
-	  background-color: transparent;
+
+	::-webkit-scrollbar-corner {
+		background-color: transparent
 	}
+
 	::-webkit-scrollbar-thumb {
-		background-color: #B2DFDE;
-		background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, .4) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .4) 50%, rgba(255, 255, 255, .4) 75%, transparent 75%, transparent);
 		border-radius: 2em;
+		background-color: #b2dfde;
+		background-image: -webkit-linear-gradient(45deg,hsla(0,0%,100%,.4) 25%,transparent 0,transparent 50%,hsla(0,0%,100%,.4) 0,hsla(0,0%,100%,.4) 75%,transparent 0,transparent)
 	}
 }
-
 
 :root {
-	/* 圆角 */
 	--radius: 4px;
-	/* 阴影 */
-	--shadow: 0 4px 10px rgba(0,0,0,0.05), 0 0 1px rgba(0,0,0,0.1);
-	/* 背景颜色 */
-	--bgcolor: #FFF;
-	/* 字体颜色 */
+	--shadow: 0 4px 10px rgba(0,0,0,0.05),0 0 1px rgba(0,0,0,0.1);
+	--bgcolor: #fff;
 	--blackColor: #4c4948;
-	/* 外边距 */
-	--margin:5%;
-	/* 背景 */
-	--light_bg_color:linear-gradient(90deg, rgba(247, 149, 51, .1) 0, rgba(243, 112, 85, .1) 15%, rgba(239, 78, 123, .1) 30%, rgba(161, 102, 171, .1) 44%, rgba(80, 115, 184, .1) 58%, rgba(16, 152, 173, .1) 72%, rgba(7, 179, 155, .1) 86%, rgba(109, 186, 130, .1) 100%);
+	--margin: 5%;
+	--light_bg_color: linear-gradient(90deg,rgba(247,149,51,0.1),rgba(243,112,85,0.1) 15%,rgba(239,78,123,0.1) 30%,rgba(161,102,171,0.1) 44%,rgba(80,115,184,0.1) 58%,rgba(16,152,173,0.1) 72%,rgba(7,179,155,0.1) 86%,rgba(109,186,130,0.1))
 }
 
-
-.card-content{
-	padding: 21px;
+.card-content {
 	box-sizing: border-box;
-	box-shadow: var(--shadow);
+	padding: 21px;
 	border-radius: var(--radius);
+	box-shadow: var(--shadow)
 }
-.aside-margin {
-		margin: var(--margin) 0;
-	}
-  /*进度条*/
-/*  #nprogress .bar {
-    height: 3px;
-    background: #fe9600;
-    z-index: 1000;
-  }
 
-  #nprogress .peg {
-    box-shadow: 0 0 10px #fe9600, 0 0 5px #fe9600;
-  } */
+.aside-margin {
+	margin: var(--margin) 0
+}
