@@ -6,7 +6,7 @@ export default  {
             // name: 'Home',
             component: ()=> import('@/views/Home'),
 			meta:{
-				title:'沙小光的成长笔记',
+				title:'等一句晚安',
 				keepAlive: true 
 			},
 			children:[
@@ -15,7 +15,7 @@ export default  {
 					name:'Tags',
 					component: ()=> import('@/components/Tags'),
 					meta:{
-						title:'沙小光的成长笔记',
+						title:'等一句晚安',
 						keepAlive: true 
 					},
 				},

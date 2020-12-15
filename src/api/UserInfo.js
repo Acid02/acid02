@@ -4,7 +4,7 @@ import axios from 'axios'
 //获取qq头像和用户名
 export const MyiqInfo = async (qq=1716815045)=>{
 	 // process.env.NODE_ENV ==''
-	let reqs = await axios.get(`${process.env.VUE_APP_BASE_API}/api/qq?qq=${qq}`)
+	let reqs = await axios.get(`${process.env.VUE_APP_BASE_API}/api/qq?qq=${qq}`,{timeout:1000}).catch(e=>{console.log(e)})
 	return reqs.data;
 }
 
