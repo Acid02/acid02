@@ -1,10 +1,10 @@
 <template>
 	<div id="body-warp">
 		<div class="body-bag">
-			<img class="body-media" :src="media.images" alt="声之形" v-if="isAndroid">
+			<img class="body-media" :src="media.images.src" :alt="media.images.name" v-if="isAndroid">
 			<video v-else class="body-media" ref="video" :src="media.video.src" :poster='media.video.poster'
 			 muted="muted" autoplay="autoplay" loop="loop" x5-video-player-fullscreen="true" webkit-playsinline="true"
-			 x-webkit-airplay="true" playsinline="true" alt="beijing" />
+			 x-webkit-airplay="true" playsinline="true" :alt="media.video.name" />
 		</div>
 		<div class="body-header">
 			<slot name="header"></slot>
