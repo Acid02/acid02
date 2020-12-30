@@ -7,10 +7,10 @@ a,abbr,acronym,address,applet,b,big,blockquote,body,caption,center,cite,code,dd,
 	vertical-align: baseline;
 	font-size: 100%
 }
-
 body {
 	line-height: 1;
-	-webkit-overflow-scrolling: touch
+	-webkit-overflow-scrolling: touch;
+	
 }
 
 ol,ul {

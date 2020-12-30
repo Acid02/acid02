@@ -172,7 +172,7 @@
 	
 	#details {
 		width: 100%;
-		height: 100vh;
+		min-height: 100vh;
 		/* background-color: #000000; */
 		color: #FFFFFF;
 		/* animation: slideMove .3s cubic-bezier(.62, 0.91, .45, 1.27); */
@@ -314,6 +314,7 @@
 	}
 
 	.post-content {
+		line-height: initial;
 		width: 100%;
 		padding: 50px 40px;
 		border-radius: 8px;
@@ -336,6 +337,7 @@
 
 		.post-content {
 			padding: 36px 14px;
+			
 		}
 
 		.layout_post {
