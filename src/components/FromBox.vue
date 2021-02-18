@@ -60,6 +60,7 @@
 						content:'昵称和站点地址不能为空💗',
 						cancel:'none',
 						ok:'确定',
+						handleOK(){}
 					})
 				}else{
 					let regex = /^([0-9A-Za-z\-_\.]+)@([0-9a-z]+\.[a-z]{2,3}(\.[a-z]{2})?)$/g;
@@ -77,13 +78,25 @@
 									that.initialize()
 								}
 							})
+						}else{
+							messageBox({
+								title:'提示',
+								content:`${resp.data}💗`,
+								cancel:'none',
+								ok:'确定',
+								handleOK(){
+									that.handscancel()
+									that.initialize()
+								}
+							})
 						}
 					}else{
 						messageBox({
 							title:'提示',
 							content:'邮箱不合法💗',
 							cancel:'none',
-							ok:'确定'
+							ok:'确定',
+							handleOK(){}
 						})
 					}
 				}
