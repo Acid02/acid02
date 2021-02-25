@@ -41,7 +41,89 @@ module.exports = {
   
     parallel: require("os").cpus().length > 1, // PWA 插件相关配置 // see https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-pwa
   
-    pwa: {}, // configure webpack-dev-server behavior
+    pwa: {
+		themeColor:'transparent',
+		msTileColor: 'transparent',
+		manifestOptions:{
+			name: "等一句晚安", //网站应用的全名
+			short_name: "等一句晚安", //显示在主屏上的短名
+			start_url: ".", // 启动网址
+			display: "standalone",  // 启动画面
+			theme_color: "#EC98B0", // #002140 （index.html文件中也要设置）主题颜色，强烈建议和ui主题颜色保持一致，看起来更有原生app的感觉
+			background_color: "#EC98B0", // 启动背景颜色
+			description: "祝你我前程似锦.",
+			icons: [
+				{
+					"src": "./img/icons/favicon-1.png",
+					"sizes": "64x64",
+					"type": "image/png"
+				},
+				{
+					"src": "./img/icons/favicon-2.png",
+					"sizes": "120x120",
+					"type": "image/png"
+				},
+				{
+					"src": "./img/icons/favicon-3.png",
+					"sizes": "144x144",
+					"type": "image/png"
+				},
+				{
+					"src": "./img/icons/favicon-4.png",
+					"sizes": "152x152",
+					"type": "image/png"
+				},
+				{
+					"src": "./img/icons/favicon-5.png",
+					"sizes": "192x192",
+					"type": "image/png"
+				},
+				{
+					"src": "./img/icons/favicon-6.png",
+					"sizes": "384x384",
+					"type": "image/png"
+				},
+				{
+					"src": "./img/icons/favicon-7.png",
+					"sizes": "512x512",
+					"type": "image/png"
+				}
+			],
+		},
+		appleMobileWebAppCapable: 'yes',
+		appleMobileWebAppStatusBarStyle: 'black',
+		iconPaths: {
+		  favicon32: './favicon.ico',
+		  favicon16: './favicon.ico',
+		  appleTouchIcon: './favicon.ico',
+		  maskIcon: './favicon.ico',
+		  msTileImage: './favicon.ico'
+		},
+		
+		
+		workboxPluginMode: 'GenerateSW', // 也可以定义为‘InjectManifest’模式。但是需自己写SW.js文件进行配置
+		    workboxOptions: {
+		        importWorkboxFrom: 'cdn', //从''cdn"导入workbox,也可以‘local’
+		        skipWaiting: true, // 安装完SW不等待直接接管网站
+		        clientsClaim: true,
+		        navigateFallback: '/index.html', 
+		        exclude: [/\.(?:png|jpg|jpeg|svg)$/], //在预缓存中排除图片
+		        // 定义运行时缓存
+		        runtimeCaching: [
+		            {
+		                urlPattern: new RegExp('^https://cdn'),
+		                handler: 'NetworkFirst',
+		                options: {
+		                    networkTimeoutSeconds: 20,
+		                    cacheName: 'cdn-cache',
+		                    cacheableResponse: {
+		                        statuses: [200]
+		                    }
+		                }
+		            }
+		        ]
+		    },
+	}, // configure webpack-dev-server behavior
     devServer: {
       open: process.platform === "darwin",
       disableHostCheck: false,

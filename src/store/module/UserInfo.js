@@ -65,7 +65,7 @@ export default {
 		 context.commit('setData',myiqInfo)
 		 
 		 //全部文章
-		 context.commit('setAllarticles',myArticle.concat(myLabel))
+		 context.commit('setAllarticles',myArticle.concat(myLabel).reverse())
 		
 		
 		//去除重复标签

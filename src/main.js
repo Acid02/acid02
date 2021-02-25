@@ -4,7 +4,7 @@ import '@/assets/style/iconfont.css'
 import App from './App.vue'
 import router from '@/router'
 import store from '@/store'
-
+import './registerServiceWorker'
 //全局过滤器
 import * as filters from './filters'
 Object.keys(filters).forEach(key => {
@@ -24,6 +24,8 @@ Object.keys(utils).forEach(key => {
 
 //Loading
 import Loading from '@/components/Loading.vue'
+
+import './registerServiceWorker'
 Vue.component('Loading',Loading)
 
 Vue.config.productionTip = false

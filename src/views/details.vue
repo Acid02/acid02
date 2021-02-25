@@ -1,7 +1,7 @@
 <template>
 	<div id="details" v-if="Allarticles">
 		<Header @MaskShow="MaskShow" />
-		<div id="web_bg" data-type="color">1</div>
+		<div id="web_bg" data-type="color"></div>
 		<div class="post-bg">
 			<img :src="Allarticles.headerpic" width="100%" class="post-img">
 			<div id="post-info">
@@ -116,43 +116,43 @@
 				this.MaskingShow = !this.MaskingShow
 			},
 		},
-		// watch: {
-			// Allarticles: {
-			// 	handler: function(val, oldVal) {
-			// 		if (!val) {
-			// 			this.$router.push({
-			// 				name: 'NotFound'
-			// 			})
-			// 		}
-			// 	},
-			// 	// 深度观察监听
-			// 	// deep: true,
-			// 	immediate:true
-			// },
-			//页面不加缓存
-			// $route: {
-			// 	handler: function(val, oldVal) {
-			// 		if (val.name == 'details') {
-			// 			try{
-			// 				let params = {
-			// 					id: this.Allarticles.id,
-			// 					type: this.Allarticles.type,
-			// 				}
-			// 				Upview(params).then(res => {
-			// 					this.$store.commit('UserInfo/setReading', params)
-			// 					// console.log(params)
-			// 				})	
-			// 			}catch(e){
-			// 				//TODO handle the exception
-			// 			}
+		watch: {
+			Allarticles: {
+				handler: function(val, oldVal) {
+					if (!val) {
+						this.$router.push({
+							name: 'NotFound'
+						})
+					}
+				},
+				// 深度观察监听
+				// deep: true,
+				immediate:true
+			},
+			// 页面不加缓存
+			$route: {
+				handler: function(val, oldVal) {
+					if (val.name == 'details') {
+						try{
+							let params = {
+								id: this.Allarticles.id,
+								type: this.Allarticles.type,
+							}
+							Upview(params).then(res => {
+								this.$store.commit('UserInfo/setReading', params)
+								// console.log(params)
+							})	
+						}catch(e){
+							//TODO handle the exception
+						}
 						
-			// 		}
-			// 	},
-			// 	// 深度观察监听
-			// 	// deep: true,
-			// 	immediate: true
-			// },
-		// }
+					}
+				},
+				// 深度观察监听
+				// deep: true,
+				immediate: true
+			},
+		}
 	}
 </script>
 <style>
