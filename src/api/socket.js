@@ -8,7 +8,7 @@ var wesocket = {
 // "ws://49.234.69.185:3000"
 Vue.use(new VueSocketIO(wesocket))
 
-// // ws://localhost:3000/
+// ws://localhost:3000/
 // const socketio = async (qq)=>{
 // 	let qqinfo = await MyiqInfo(qq);
 // 	if(qqinfo.code != -1){
