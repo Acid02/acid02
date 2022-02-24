@@ -51,7 +51,7 @@ module.exports = {
 			display: "standalone",  // 启动画面
 			theme_color: "#EC98B0", // #002140 （index.html文件中也要设置）主题颜色，强烈建议和ui主题颜色保持一致，看起来更有原生app的感觉
 			background_color: "#EC98B0", // 启动背景颜色
-			description: "祝你我前程似锦.",
+			description: "祝你我飞黄腾达.",
 			icons: [
 				{
 					"src": "./img/icons/favicon-1.png",
@@ -101,27 +101,29 @@ module.exports = {
 		},
 		
 		
-		workboxPluginMode: 'GenerateSW', // 也可以定义为‘InjectManifest’模式。但是需自己写SW.js文件进行配置
+		// workboxPluginMode: 'GenerateSW', // 也可以定义为‘InjectManifest’模式。但是需自己写SW.js文件进行配置
 		    workboxOptions: {
-		        importWorkboxFrom: 'cdn', //从''cdn"导入workbox,也可以‘local’
+		        importWorkboxFrom: 'local', //从''cdn"导入workbox,也可以‘local’
 		        skipWaiting: true, // 安装完SW不等待直接接管网站
 		        clientsClaim: true,
-		        navigateFallback: '/index.html', 
-		        exclude: [/\.(?:png|jpg|jpeg|svg)$/], //在预缓存中排除图片
+				importsDirectory:'js',
+		        navigateFallback: '/', 
+				navigateFallbackBlacklist: [/\/api\//]
+		        // exclude: [/\.(?:png|jpg|jpeg|svg)$/], //在预缓存中排除图片
 		        // 定义运行时缓存
-		        runtimeCaching: [
-		            {
-		                urlPattern: new RegExp('^https://cdn'),
-		                handler: 'NetworkFirst',
-		                options: {
-		                    networkTimeoutSeconds: 20,
-		                    cacheName: 'cdn-cache',
-		                    cacheableResponse: {
-		                        statuses: [200]
-		                    }
-		                }
-		            }
-		        ]
+		        // runtimeCaching: [
+		        //     {
+		        //         urlPattern: new RegExp('^https://cdn'),
+		        //         handler: 'NetworkFirst',
+		        //         options: {
+		        //             networkTimeoutSeconds: 20,
+		        //             cacheName: 'cdn-cache',
+		        //             cacheableResponse: {
+		        //                 statuses: [200]
+		        //             }
+		        //         }
+		        //     }
+		        // ]
 		    },
 	}, // configure webpack-dev-server behavior
     devServer: {
